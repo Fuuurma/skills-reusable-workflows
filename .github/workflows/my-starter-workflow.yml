@@ -19,8 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
+    strategy:
+      matrix:
+        nodeversion: [14, 16, 18, 20]
+
     steps:
       - name: Call Reusable Workflow
         uses: ./.github/workflows/reusable-workflow.yml
         with:
-          node: 14
+          node: ${{ matrix.nodeversion }}
